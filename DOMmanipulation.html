@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Local Storage Example</title>
+</head>
+<body>
+    <span id="dt"></span>
+
+    <form onsubmit="return setValue()">
+        <input type="text" placeholder="Enter name" id="na" required>
+        <input type="number" placeholder="Enter number" id="nu" required>
+        <input type="email" placeholder="Enter email" id="em" required>
+        <input type="submit" value="Login">
+    </form>
+    <br>
+    <button onclick="getValue()">Display Stored Values</button>
+    <div id="data"></div>
+    <br>
+    <button onclick="clearValue()">Remove Stored Value</button>
+
+    <script>
+        function setValue() {
+            let UN = document.getElementById('na').value;
+            let Un = document.getElementById('nu').value;
+            let UE = document.getElementById('em').value;
+
+            localStorage.setItem("User Name", UN);
+            localStorage.setItem("User Number", Un);
+            localStorage.setItem("User Mail", UE);
+
+            console.log("Success");
+            alert("Submitted and stored in localStorage");
+            return false; // prevents page reload
+        }
+
+        function getValue() {
+            let name = localStorage.getItem("User Name");
+            let number = localStorage.getItem("User Number");
+            let email = localStorage.getItem("User Mail");
+
+            let display = `
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Number:</strong> ${number}</p>
+                <p><strong>Email:</strong> ${email}</p>
+            `;
+
+            document.getElementById("data").innerHTML = display;
+            alert("Values retrieved successfully!");
+        }
+        function clearValue(){
+            localStorage.clear();
+            alert("Value deleted successfull!");
+            return true;
+        }
+    </script>
+</body>
+</html>
